@@ -34,10 +34,14 @@ class BaseCollection extends ResourceCollection
         if (method_exists($this->resource, 'total')) {
             return [
                 "pagination" => [
-                    "current_page" => $this->currentPage(),
-                    "last_page" => $this->lastPage(),
-                    "per_page" => $this->perPage(),
-                    "total" => $this->total(),
+                    'pageSize'         => $this->perPage(),
+                    'pageNumber'       => $this->currentPage(),
+                    'totalPages'       => $this->lastPage(),
+                    'totalElements'    => $this->total(),
+                    'numberOfElements' => $this->count(),
+                    'first'            => $this->onFirstPage(),
+                    'last'             => !$this->hasMorePages(),
+                    'empty'            => $this->isEmpty(),
                 ]
             ];
         }
