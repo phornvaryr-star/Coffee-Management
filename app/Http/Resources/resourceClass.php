@@ -9,9 +9,7 @@ class ResourceClass
     {
         $map = [
             User::class => UserResource::class,
-            // Add more models here
         ];
-
         return $map[get_class($model)] ?? null;
     }
 }
