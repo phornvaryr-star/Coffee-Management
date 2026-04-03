@@ -35,8 +35,7 @@ class Authcontroller extends Controller
         return new BaseCollection($user, "User list");
 =======
         $user = User::paginate(10);
-        return (new BaseCollection($user))
-            ->setMessage('Users retrieved successfully');
+        return (new BaseCollection($user))->setMessage('User list');
 >>>>>>> f50ecf6 (fix: Authentication)
     }
 
