@@ -13,13 +13,8 @@ class ResourceClass
             User::class => UserResource::class,
             // Add more models here
             Role::class => RoleResource::class,  
->>>>>>> 281d74e (fix: User & Role Management)
         ];
 
         return $map[get_class($model)] ?? null;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 281d74e (fix: User & Role Management)
