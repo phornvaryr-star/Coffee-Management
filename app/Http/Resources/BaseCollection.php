@@ -1,18 +1,31 @@
 <?php
 
 namespace App\Http\Resources;
-use App\Http\Resources\UserResource;
+
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class BaseCollection extends ResourceCollection
 {
     protected $message;
+    protected $resourceClass;
+    public function getMessage()
+    {
+        return $this->message;
+    }
+    public function setMessage(string $message)
+    {
+        $this->message = $message;
+        return $this;
+    }
 
-    public function __construct($resource, $message = "Data retrieved successfully")
+    public function __construct($resource, $resourceClass = null, $message = "Data retrieved successfully")
     {
         parent::__construct($resource);
         $this->message = $message;
+
+        $this->resourceClass = $resourceClass 
+            ?? ResourceClass::resolve($resource->first());
     }
 
     public function toArray(Request $request): array
@@ -20,10 +33,10 @@ class BaseCollection extends ResourceCollection
         return [
             "status" => true,
             "message" => $this->message,
-            "data" => UserResource::collection($this->collection),
+            "data" => $this->resourceClass::collection($this->collection),
         ];
-        
     }
+
     public function paginationInformation($request, $paginated, $default)
     {
         return [];
