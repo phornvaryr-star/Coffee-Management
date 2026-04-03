@@ -33,10 +33,6 @@ class Authcontroller extends Controller
         $user = $query->paginate($pageSize);
 <<<<<<< HEAD
         return (new BaseCollection($user))->setMessage("User list");
-=======
-        return (new BaseCollection($user))
-            ->setMessage('Users retrieved successfully');
->>>>>>> 281d74e (fix: User & Role Management)
     }
 
     /**
