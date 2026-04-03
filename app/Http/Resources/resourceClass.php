@@ -11,21 +11,17 @@ use App\Http\Resources\RoleResource;
 use App\Http\Resources\UserResource;
 use App\Models\Customer;
 use App\Http\Resources\CustomerResource;
-
 class ResourceClass
 {
     public static function resolve($model)
     {
         $map = [
             User::class => UserResource::class,
-            // Add more models here
             Product::class => ProductResource::class,
             Category::class => CategoryResource::class,
             Role::class => RoleResource::class,
             Customer::class => CustomerResource::class,
-            
         ];
-
         return $map[get_class($model)] ?? null;
     }
 }
