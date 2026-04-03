@@ -2,8 +2,6 @@
 
 namespace App\Http\Resources;
 use App\Models\User;
-use App\Models\Role;
-use App\Http\Resources\RoleResource;
 use App\Http\Resources\UserResource;
 
 
