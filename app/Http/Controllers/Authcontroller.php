@@ -16,7 +16,8 @@ class Authcontroller extends Controller
     public function index()
     {
         $user = User::paginate(10);
-        return new BaseCollection($user, "User list");
+        return (new BaseCollection($user))
+            ->setMessage('Users retrieved successfully');
     }
 
     /**
@@ -39,8 +40,11 @@ class Authcontroller extends Controller
             'password' => Hash::make($request->password),
             'status' => 'active',
         ]);
-        $token = JWTAuth::fromUser($user);
-        return response()->json(compact('user', 'token'), 201);
+        return response()->json([
+            'status' => true,
+            'message' => 'User created successfully',
+            'user' => new UserResource($user)
+        ], 201);
     }
 
     /**
