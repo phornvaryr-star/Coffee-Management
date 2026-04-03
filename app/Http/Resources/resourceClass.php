@@ -2,6 +2,14 @@
 
 namespace App\Http\Resources;
 use App\Models\User;
+use App\Models\Category;
+use App\Models\Role;
+use App\Models\Product;
+use App\Models\Customer;
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ProductResource;
+use App\Http\Resources\RoleResource;
+use App\Http\Resources\CustomerResource;
 use App\Http\Resources\UserResource;
 class ResourceClass
 {
@@ -9,6 +17,10 @@ class ResourceClass
     {
         $map = [
             User::class => UserResource::class,
+            Product::class => ProductResource::class,
+            Category::class => CategoryResource::class,
+            Role::class => RoleResource::class,
+            Customer::class => CustomerResource::class
         ];
         return $map[get_class($model)] ?? null;
     }
