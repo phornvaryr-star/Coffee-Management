@@ -31,7 +31,6 @@ class Authcontroller extends Controller
 
         $pageSize = $request->get('pageSize', 10);
         $user = $query->paginate($pageSize);
-<<<<<<< HEAD
         return (new BaseCollection($user))->setMessage("User list");
     }
 
