@@ -16,6 +16,7 @@ class Authcontroller extends Controller
      */
     public function index(Request $request)
     {
+<<<<<<< HEAD
         $query = User::with('profile');
         if ($request->filled('search')) {
             $query->where('name', 'LIKE', '%' . $request->search . '%');
@@ -32,6 +33,11 @@ class Authcontroller extends Controller
         $pageSize = $request->get('pageSize', 10);
         $user = $query->paginate($pageSize);
         return new BaseCollection($user, "User list");
+=======
+        $user = User::paginate(10);
+        return (new BaseCollection($user))
+            ->setMessage('Users retrieved successfully');
+>>>>>>> f50ecf6 (fix: Authentication)
     }
 
     /**
@@ -58,6 +64,7 @@ class Authcontroller extends Controller
             'password' => Hash::make($request->password),
             'status' => $request->status ?? 'active',
         ]);
+<<<<<<< HEAD
         $token = JWTAuth::fromUser($user);
         $imageUrl = null;
         if ($request->hasFile('image')) {
@@ -73,6 +80,12 @@ class Authcontroller extends Controller
             'status' => true,
             'message' => 'User registered successfully',
             'user' => new UserResource($user->load('profile')),
+=======
+        return response()->json([
+            'status' => true,
+            'message' => 'User created successfully',
+            'user' => new UserResource($user)
+>>>>>>> f50ecf6 (fix: Authentication)
         ], 201);
     }
 
