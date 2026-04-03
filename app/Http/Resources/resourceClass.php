@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Resources;
-use App\Models\Category;
 use App\Models\User;
 use App\Models\Role;
 use App\Http\Resources\RoleResource;
@@ -15,9 +14,7 @@ class ResourceClass
         $map = [
             User::class => UserResource::class,
             // Add more models here
-            
         ];
-
         return $map[get_class($model)] ?? null;
     }
 }
